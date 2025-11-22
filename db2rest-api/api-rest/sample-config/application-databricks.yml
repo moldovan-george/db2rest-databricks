@@ -1,0 +1,10 @@
+app:
+  databases:
+    - id: ${DB_NAME:dbx}
+      type: DATABRICKS
+      url: jdbc:databricks://my-workspace-name.cloud.databricks.com:443/default;transportMode=http;ssl=1;AuthMech=3;httpPath=/sql/1.0/warehouses/1234567891011dbde
+      username: token
+      password:
+      schemas: my-catalog
+      autoCommit: true
+      maxConnections: ${MAX_POOL_SIZE:5}
