@@ -42,7 +42,7 @@ public class DatabricksDataExtraction implements MetaDataExtraction {
                 log.info("Loading meta tables for catalog - {}", catalog);
 
                 List<MetaDataTable> metaDataTables =
-                        getMetaTables(databaseMetaData, catalog, null);
+                    getMetaTables(databaseMetaData, catalog, null);
 
                 List<DbTable> tables =
                         metaDataTables.stream()

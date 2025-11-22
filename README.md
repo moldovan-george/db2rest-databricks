@@ -9,9 +9,10 @@ Edit the application.yaml file, as per the following example:
 # Authorization
 Authentication is performed in currently through PATs only.
 
-# TODO List
-* Support hive_metastore alongside UC catalogs
-* Confirm OAuth authorization works as expected
+# TODO List for the first release
+[] Add pagination support
+[] Support hive_metastore alongside UC catalogs
+[] Confirm OAuth authorization works as expected
 
 # Website
 
