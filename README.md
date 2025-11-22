@@ -14,9 +14,9 @@ Authentication is performed in currently through PATs only.
 - [x] Support hive_metastore alongside UC catalogs
 - [ ] Confirm OAuth authorization works as expected
 
-# Website
-
+# Websites
 [https://db2rest.com](https://db2rest.com)
+
 [https://databricks.com](https://databricks.com)
 
 # Latest Release
