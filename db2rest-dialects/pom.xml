@@ -23,6 +23,7 @@
         <module>oracle9i-dialect</module>
         <module>pg-dialect</module>
         <module>sqlite-dialect</module>
+        <module>databricks-dialect</module>
     </modules>
 
 </project>

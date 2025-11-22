@@ -47,3 +47,6 @@ build/
 /api-rest/jte-classes/**
 /jte-classes/**
 /env/
+
+## test confs ##
+db2rest-api/api-rest/src/main/resources/application.yml

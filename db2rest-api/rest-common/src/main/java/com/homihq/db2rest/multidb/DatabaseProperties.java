@@ -20,6 +20,7 @@ public class DatabaseProperties {
     private List<DatabaseConnectionDetail> databases;
 
     public Optional<DatabaseConnectionDetail> getDatabase(String dbId) {
+
         return databases.stream()
                 .filter(databaseConnectionDetail -> StringUtils.equalsIgnoreCase(dbId, databaseConnectionDetail.id()))
                 .findFirst();
@@ -34,6 +35,17 @@ public class DatabaseProperties {
 
         log.info("Database configuration found.");
 
+        
+        System.out.println("Size: " + databases.size());
+        for(DatabaseConnectionDetail dbConnDetal :databases)
+        {
+            System.out.println("And id.:" + dbConnDetal.id());
+            System.out.println(dbConnDetal.url());
+            System.out.println(dbConnDetal.password());
+            System.out.println(dbConnDetal.type());
+            System.out.println(dbConnDetal.isAutoCommit());
+        }
+        
         boolean jdbcUrlFound = databases.stream()
                 .anyMatch(DatabaseConnectionDetail::isJdbcPresent);
 
