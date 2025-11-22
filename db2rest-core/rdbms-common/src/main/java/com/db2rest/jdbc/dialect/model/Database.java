@@ -13,7 +13,8 @@ public enum Database {
     POSTGRESQL("PostgreSQL"),
     MARIADB("MariaDB"),
     SQLITE("SQLite"),
-    DB2("DB2/UDB");
+    DB2("DB2/UDB"),
+    DATABIRCKS("SparkSQL");
 
     private final String productName;
 

@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, MongoAutoConfiguration.class})
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, MongoAutoConfiguration.class })
 @ComponentScan(excludeFilters = @ComponentScan.Filter(RestController.class))
 public class Db2restApplication {
-
     public static void main(String[] args) {
+        
         SpringApplication.run(Db2restApplication.class, args);
     }
 }

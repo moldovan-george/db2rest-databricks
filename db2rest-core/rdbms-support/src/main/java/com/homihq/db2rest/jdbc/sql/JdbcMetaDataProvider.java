@@ -16,13 +16,15 @@ public class JdbcMetaDataProvider implements DatabaseMetaDataCallback<DbMeta> {
 
     private final boolean includeAllSchemas;
     private final List<String> includedSchemas;
+
     List<MetaDataExtraction> exclusions = List.of(
             new OracleMetaDataExtraction(),
             new PostgreSQLDataExclusion(),
             new MySQLDataExtraction(),
             new MariaDBDataExtraction(),
             new MsSQLServerMetaDataExtraction(),
-            new SQLiteDataExtraction()
+            new SQLiteDataExtraction(),
+            new DatabricksDataExtraction()
     );
 
     //TODO include schemas , tables , view,  filters filters

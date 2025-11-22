@@ -86,7 +86,7 @@ public final class JdbcManager {
                 DatabaseConnectionDetail databaseConnectionDetail = null;
                 Optional<DatabaseConnectionDetail> connectionDetail = this.databaseProperties
                         .getDatabase((String) dbId);
-
+                            
                 if (connectionDetail.isPresent()) {
                     databaseConnectionDetail = connectionDetail.get();
                 }
@@ -118,6 +118,7 @@ public final class JdbcManager {
             List<String> schemas = null;
 
             if (Objects.nonNull(databaseConnectionDetail)) {
+
                 includeAllSchemas = databaseConnectionDetail.includeAllSchemas();
                 schemas = databaseConnectionDetail.schemas();
 
@@ -158,6 +159,8 @@ public final class JdbcManager {
         if (Objects.isNull(dbDetailHolder)) {
             throw new GenericDataAccessException("DB not found.");
         }
+
+        System.out.println(dbDetailHolder.dbTableMap().size());
 
         DbTable table = dbDetailHolder.dbTableMap().get(tableName);
 

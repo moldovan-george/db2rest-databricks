@@ -83,8 +83,8 @@ public class DbServiceConfiguration {
         config.setUsername(connectionDetail.username());
         config.setPassword(connectionDetail.password());
         config.setMaximumPoolSize(connectionDetail.maxConnections());
+        config.setAutoCommit(connectionDetail.isAutoCommit());
 
-        config.setAutoCommit(false);
         return new HikariDataSource(config);
     }
 
@@ -98,7 +98,8 @@ public class DbServiceConfiguration {
                 new OracleDialect(objectMapper),
                 new MsSQLServerDialect(objectMapper),
                 new SQLiteDialect(objectMapper),
-                new DB2RestDB2Dialect(objectMapper)
+                new DB2RestDB2Dialect(objectMapper),
+                new DatabricksDialect(objectMapper)
         );
 
         return new JdbcManager(dataSource(), dialects, databaseProperties);
