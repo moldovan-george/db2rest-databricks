@@ -65,9 +65,9 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("TIMESTAMP")))
-                .andExpect(jsonPath("$[0].last_update").exists())
+                .andExpect(jsonPath("$.data", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("TIMESTAMP")))
+                .andExpect(jsonPath("$.data[0].last_update").exists())
                 .andDo(document("sqlite-read-actor-with-timestamp"));
     }
 
@@ -98,8 +98,8 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("UPDATED_TIMESTAMP")))
+                .andExpect(jsonPath("$.data", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("UPDATED_TIMESTAMP")))
                 .andDo(document("sqlite-verify-timestamp-update"));
     }
 
@@ -155,8 +155,8 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(1)))
-                //.andExpect(jsonPath("$[0].first_name", equalTo("Filter")))
+                //.andExpect(jsonPath("$.data", hasSize(1)))
+                //.andExpect(jsonPath("$.data[0].first_name", equalTo("Filter")))
                 .andDo(document("sqlite-filter-by-datetime"));
     }
 
@@ -170,7 +170,7 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.data").isArray())
                 .andDo(document("sqlite-sort-by-datetime"));
     }
 
@@ -204,8 +204,8 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].release_year", equalTo(2023)))
+                .andExpect(jsonPath("$.data", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].release_year", equalTo(2023)))
                 .andDo(document("sqlite-verify-film-year"));
     }
 
@@ -219,7 +219,7 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.data").isArray())
                 .andDo(document("sqlite-filter-by-year-range"));
     }
 
@@ -251,7 +251,7 @@ class SQLiteDateTimeAllTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-verify-bulk-timestamps"));
     }
 }

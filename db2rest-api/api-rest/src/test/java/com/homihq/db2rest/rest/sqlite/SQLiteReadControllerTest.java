@@ -29,9 +29,9 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
                 .andDo(document("sqlite-get-all-films"));
     }
 
@@ -58,11 +58,11 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[0].language_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].description").doesNotExist())
+                .andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[0].language_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].description").doesNotExist())
                 .andDo(document("sqlite-get-films-field-selection"));
     }
 
@@ -76,9 +76,9 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[1].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data", hasSize(2)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(2)))
                 .andDo(document("sqlite-get-films-pagination"));
     }
 
@@ -92,8 +92,8 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
                 .andDo(document("sqlite-get-films-sorting"));
     }
 
@@ -107,8 +107,8 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].language_id", equalTo(1)))
+                .andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].language_id", equalTo(1)))
                 .andDo(document("sqlite-get-films-filter"));
     }
 
@@ -120,9 +120,9 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(10)))
-                .andExpect(jsonPath("$[0].actor_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("PENELOPE")))
+                .andExpect(jsonPath("$.data", hasSize(10)))
+                .andExpect(jsonPath("$.data[0].actor_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("PENELOPE")))
                 .andDo(document("sqlite-get-all-actors"));
     }
 
@@ -148,9 +148,9 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[0].emp_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("Alice")))
+                .andExpect(jsonPath("$.data", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].emp_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("Alice")))
                 .andDo(document("sqlite-get-all-employees"));
     }
 
@@ -163,8 +163,8 @@ class SQLiteReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].is_active", equalTo(1)))
+                .andExpect(jsonPath("$.data", hasSize(2)))
+                .andExpect(jsonPath("$.data[0].is_active", equalTo(1)))
                 .andDo(document("sqlite-get-employees-boolean-filter"));
     }
 

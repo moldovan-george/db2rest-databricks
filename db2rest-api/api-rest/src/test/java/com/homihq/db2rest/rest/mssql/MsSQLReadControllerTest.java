@@ -25,9 +25,9 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                         .contentType(APPLICATION_JSON).accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].*", hasSize(14)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(14)))
                 .andDo(document(DB_NAME + "-find-all-films-all-columns"));
     }
 
@@ -41,9 +41,9 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].*", hasSize(3)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(3)))
                 .andDo(document(DB_NAME + "-find-all-films-3-columns"));
     }
 
@@ -57,11 +57,11 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].title", notNullValue()))
-                .andExpect(jsonPath("$[0].description", notNullValue()))
-                .andExpect(jsonPath("$[0].releaseYear", notNullValue()))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].title", notNullValue()))
+                .andExpect(jsonPath("$.data[0].description", notNullValue()))
+                .andExpect(jsonPath("$.data[0].releaseYear", notNullValue()))
                 .andDo(document(DB_NAME + "-find-all-films-with-column-alias"));
     }
 
@@ -74,13 +74,13 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                         .param("sort", "film_id;desc")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andDo(print())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(4)))
-                .andExpect(jsonPath("$[1].film_id", equalTo(3)))
-                .andExpect(jsonPath("$[2].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[3].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(4)))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(3)))
+                .andExpect(jsonPath("$.data[2].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[3].film_id", equalTo(1)))
                 .andDo(document(DB_NAME + "-find-all-films-with-sorting"));
     }
 
@@ -95,12 +95,12 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                         .param("sort", "film_id;desc")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andDo(print())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(3)))
-                .andExpect(jsonPath("$[1].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[2].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(3)))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[2].film_id", equalTo(1)))
                 .andDo(document(DB_NAME + "-find-all-films-with-sorting-and-pagination"));
     }
 
@@ -114,12 +114,12 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                         .param("limit", "3")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andDo(print())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[1].film_id", equalTo(3)))
-                .andExpect(jsonPath("$[2].film_id", equalTo(4)))
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(3)))
+                .andExpect(jsonPath("$.data[2].film_id", equalTo(4)))
                 .andDo(document(DB_NAME + "-find-all-films-with-pagination"));
     }
 
@@ -133,9 +133,9 @@ class MsSQLReadControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
                 .andDo(document(DB_NAME + "-find-films-by-filter"));
     }
 

@@ -45,16 +45,16 @@ class MariaDBCrossJoinControllerTest extends MariaDBBaseIntegrationTest {
                 )
                 // .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(16)))
-                .andExpect(jsonPath("$[0].*", hasSize(10)))
-                .andExpect(jsonPath("$[0].auid", equalTo(1)))
-                .andExpect(jsonPath("$[0].apid", equalTo(1)))
-                .andExpect(jsonPath("$[0].firstname", equalTo("Jack")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(16)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(10)))
+                .andExpect(jsonPath("$.data[0].auid", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].apid", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].firstname", equalTo("Jack")))
 
-                .andExpect(jsonPath("$[1].auid", equalTo(2)))
-                .andExpect(jsonPath("$[1].apid", equalTo(1)))
-                .andExpect(jsonPath("$[1].firstname", equalTo("Jack")))
+                .andExpect(jsonPath("$.data[1].auid", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].apid", equalTo(1)))
+                .andExpect(jsonPath("$.data[1].firstname", equalTo("Jack")))
 
                 .andDo(document("mariadb-cross-join-users"));
     }
@@ -68,14 +68,14 @@ class MariaDBCrossJoinControllerTest extends MariaDBBaseIntegrationTest {
                 )
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(9)))
-                .andExpect(jsonPath("$[0].*", hasSize(6)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(9)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(6)))
 
-                .andExpect(jsonPath("$[0].top_item", equalTo("sweater")))
-                .andExpect(jsonPath("$[0].bottom_item", equalTo("jeans")))
-                .andExpect(jsonPath("$[0].color", equalTo("red")))
-                .andExpect(jsonPath("$[0].botColor", equalTo("blue")))
+                .andExpect(jsonPath("$.data[0].top_item", equalTo("sweater")))
+                .andExpect(jsonPath("$.data[0].bottom_item", equalTo("jeans")))
+                .andExpect(jsonPath("$.data[0].color", equalTo("red")))
+                .andExpect(jsonPath("$.data[0].botColor", equalTo("blue")))
                 .andDo(document("mariadb-cross-join-tops"));
     }
 

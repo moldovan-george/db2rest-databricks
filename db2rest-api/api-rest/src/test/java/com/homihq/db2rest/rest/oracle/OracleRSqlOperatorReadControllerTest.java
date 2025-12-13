@@ -36,11 +36,11 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].TITLE", notNullValue()))
-                .andExpect(jsonPath("$[0].DESCRIPTION", notNullValue()))
-                .andExpect(jsonPath("$[0].RELEASE_YEAR", notNullValue()))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].TITLE", notNullValue()))
+                .andExpect(jsonPath("$.data[0].DESCRIPTION", notNullValue()))
+                .andExpect(jsonPath("$.data[0].RELEASE_YEAR", notNullValue()))
                 .andDo(document("oracle-find-films-with-equals-operator"));
 
     }
@@ -54,11 +54,11 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID!=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(3), hasSize(3))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
-                .andExpect(jsonPath("$[1].FILM_ID").value(3))
-                .andExpect(jsonPath("$[2].FILM_ID").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(3), hasSize(3))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data[1].FILM_ID").value(3))
+                .andExpect(jsonPath("$.data[2].FILM_ID").value(4))
                 .andDo(document("oracle-find-films-with-not-equals-operator"));
 
     }
@@ -72,10 +72,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID=gt=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(3))
-                .andExpect(jsonPath("$[1].FILM_ID").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(3))
+                .andExpect(jsonPath("$.data[1].FILM_ID").value(4))
                 .andDo(document("oracle-find-films-with-greater-operator"));
 
     }
@@ -89,11 +89,11 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID=ge=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(3), hasSize(3))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(2))
-                .andExpect(jsonPath("$[1].FILM_ID").value(3))
-                .andExpect(jsonPath("$[2].FILM_ID").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(3), hasSize(3))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(2))
+                .andExpect(jsonPath("$.data[1].FILM_ID").value(3))
+                .andExpect(jsonPath("$.data[2].FILM_ID").value(4))
                 .andDo(document("oracle-find-films-with-greater-equals-operator"));
 
     }
@@ -107,9 +107,9 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID=lt=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
                 .andDo(document("oracle-find-films-with-less-operator"));
     }
 
@@ -122,10 +122,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID=le=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
-                .andExpect(jsonPath("$[1].FILM_ID").value(2))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data[1].FILM_ID").value(2))
                 .andDo(document("oracle-find-films-with-less-equals-operator"));
     }
 
@@ -138,10 +138,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID=in=(2,3,5)")
                 )
 
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(2))
-                .andExpect(jsonPath("$[1].FILM_ID").value(3))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(2))
+                .andExpect(jsonPath("$.data[1].FILM_ID").value(3))
                 .andDo(document("oracle-find-films-with-in-operator"));
     }
 
@@ -154,10 +154,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID=out=(2,3,5)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
-                .andExpect(jsonPath("$[1].FILM_ID").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data[1].FILM_ID").value(4))
                 .andDo(document("oracle-find-films-with-not-in-operator"));
     }
 
@@ -170,9 +170,9 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "TITLE=like=ACADEMY")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
                 .andDo(document("oracle-find-films-with-like-operator"));
     }
 
@@ -185,9 +185,9 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "TITLE=startWith=ACAD")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
                 .andDo(document("oracle-find-films-starts-with-operator"));
     }
 
@@ -200,9 +200,9 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "TITLE=endWith=DINOSAUR")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].FILM_ID").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].FILM_ID").value(1))
                 .andDo(document("oracle-find-films-ends-with-operator"));
     }
 
@@ -228,13 +228,13 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "TITLE=nk=ACADEMY")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACE GOLDFINGER")))
-                .andExpect(jsonPath("$[1].FILM_ID", equalTo(3)))
-                .andExpect(jsonPath("$[1].TITLE", equalTo("ADAPTATION HOLES")))
-                .andExpect(jsonPath("$[2].FILM_ID", equalTo(4)))
-                .andExpect(jsonPath("$[2].TITLE", equalTo("AFFAIR PREJUDICE")))
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data[1].FILM_ID", equalTo(3)))
+                .andExpect(jsonPath("$.data[1].TITLE", equalTo("ADAPTATION HOLES")))
+                .andExpect(jsonPath("$.data[2].FILM_ID", equalTo(4)))
+                .andExpect(jsonPath("$.data[2].TITLE", equalTo("AFFAIR PREJUDICE")))
                 .andDo(document("oracle-find-film-with-not-like-operator"));
     }
 
@@ -249,11 +249,11 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "TITLE=like=ACADEMY")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(2)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(1)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[1].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[1].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*", hasSize(2)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[1].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].TITLE", equalTo("ACE GOLDFINGER")))
                 .andDo(document("oracle-find-film-with-equals-or-like-operator"));
     }
 
@@ -266,10 +266,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACE GOLDFINGER")))
                 .andDo(document("oracle-find-film-with-equals-and-like-operator"));
     }
 
@@ -282,10 +282,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE;rating=in=(G, oradb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACE GOLDFINGER")))
                 .andDo(document("oracle-find-film-with-equals-and-like-and-in-operator"));
     }
 
@@ -300,14 +300,14 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "rating=in=(G, oradb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(1)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[1].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[1].TITLE", equalTo("ACE GOLDFINGER")))
-                .andExpect(jsonPath("$[2].FILM_ID", equalTo(4)))
-                .andExpect(jsonPath("$[2].TITLE", equalTo("AFFAIR PREJUDICE")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[1].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data[2].FILM_ID", equalTo(4)))
+                .andExpect(jsonPath("$.data[2].TITLE", equalTo("AFFAIR PREJUDICE")))
                 .andDo(document("oracle-find-film-with-equals-or-like-or-in-operator"));
     }
 
@@ -320,7 +320,7 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE;RATING=out=(G, oradb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isEmpty())
+                .andExpect(jsonPath("$.data.*").isEmpty())
                 .andDo(document("oracle-find-film-with-equals-and-like-and-out-operator"));
     }
 
@@ -335,14 +335,14 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "RATING=out=(G, oradb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(1)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[1].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[1].TITLE", equalTo("ACE GOLDFINGER")))
-                .andExpect(jsonPath("$[2].FILM_ID", equalTo(3)))
-                .andExpect(jsonPath("$[2].TITLE", equalTo("ADAPTATION HOLES")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[1].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data[2].FILM_ID", equalTo(3)))
+                .andExpect(jsonPath("$.data[2].TITLE", equalTo("ADAPTATION HOLES")))
                 .andDo(document("oracle-find-film-with-equals-or-like-or-out-operator"));
 
     }
@@ -356,10 +356,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE;RATING=in=(G, oradb);LANGUAGE_ID=ge=1")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACE GOLDFINGER")))
                 .andDo(document("oracle-find-film-with-equals-and-like-and-in-and-greater-equal-operator"));
     }
 
@@ -372,7 +372,7 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE;RATING=in=(G, oradb);LANGUAGE_ID=gt=1")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(0)))
+                .andExpect(jsonPath("$.data.*", hasSize(0)))
                 .andDo(document("oradb-find-film-with-equals-and-like-and-in-and-greater-operator"));
     }
 
@@ -385,10 +385,10 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE;RATING=in=(G, oradb);LANGUAGE_ID=le=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(2)))
-                .andExpect(jsonPath("$[0].TITLE", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("ACE GOLDFINGER")))
                 .andDo(document("oracle-find-film-with-equals-and-like-and-in-and-less-equal-operator"));
     }
 
@@ -401,8 +401,8 @@ class OracleRSqlOperatorReadControllerTest extends OracleBaseIntegrationTest {
                         .param("filter", "FILM_ID==2;TITLE=like=ACE;RATING=in=(G, oradb);LANGUAGE_ID=lt=1")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isEmpty())
-                .andExpect(jsonPath("$.*", hasSize(0)))
+                .andExpect(jsonPath("$.data.*").isEmpty())
+                .andExpect(jsonPath("$.data.*", hasSize(0)))
                 .andDo(document("oracle-find-film-with-equals-and-like-and-in-and-less-operator"));
     }
 

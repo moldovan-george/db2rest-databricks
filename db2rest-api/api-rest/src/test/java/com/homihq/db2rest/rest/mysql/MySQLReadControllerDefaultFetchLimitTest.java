@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 
 import static com.homihq.db2rest.rest.RdbmsRestApi.VERSION;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.AnyOf.anyOf;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -29,7 +30,10 @@ public class MySQLReadControllerDefaultFetchLimitTest extends MySQLBaseIntegrati
                         .accept(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", anyOf(hasSize(5))))
+                .andExpect(jsonPath("$.data", anyOf(hasSize(5))))
+                .andExpect(jsonPath("$.pagination.currentPage").value(1))
+                .andExpect(jsonPath("$.pagination.pageSize").value(5))
+                .andExpect(jsonPath("$.pagination.remainingDocuments").value(greaterThanOrEqualTo(0)))
                 .andDo(document("mysqldb-find-all-persons-with-default-fetch-limit-5"));
     }
 }

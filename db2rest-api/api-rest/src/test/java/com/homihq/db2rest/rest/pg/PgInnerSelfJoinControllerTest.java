@@ -44,14 +44,14 @@ class PgInnerSelfJoinControllerTest extends PostgreSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                //.andExpect(jsonPath("$.*", hasSize(1)))
-                //.andExpect(jsonPath("$[0].*", hasSize(17)))
-                //.andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                //.andExpect(jsonPath("$[0].language_id", equalTo(1)))
-                //.andExpect(jsonPath("$[0].actor_id", equalTo(1)))
-                //.andExpect(jsonPath("$[0].first_name", equalTo("PENELOPE")))
-                //.andExpect(jsonPath("$[0].last_name", equalTo("GUINESS")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                //.andExpect(jsonPath("$.data.*", hasSize(1)))
+                //.andExpect(jsonPath("$.data[0].*", hasSize(17)))
+                //.andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                //.andExpect(jsonPath("$.data[0].language_id", equalTo(1)))
+                //.andExpect(jsonPath("$.data[0].actor_id", equalTo(1)))
+                //.andExpect(jsonPath("$.data[0].first_name", equalTo("PENELOPE")))
+                //.andExpect(jsonPath("$.data[0].last_name", equalTo("GUINESS")))
                 .andDo(document("pg-inner-multi-table-join"));
     }
 }

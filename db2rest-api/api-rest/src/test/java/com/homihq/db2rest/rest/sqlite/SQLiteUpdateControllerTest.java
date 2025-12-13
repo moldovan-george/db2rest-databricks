@@ -61,7 +61,7 @@ class SQLiteUpdateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
                 .andDo(document("sqlite-verify-film-update"));
     }
 
@@ -83,7 +83,7 @@ class SQLiteUpdateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].last_name", equalTo("semmens")))
+                .andExpect(jsonPath("$.data[0].last_name", equalTo("semmens")))
                 .andDo(document("sqlite-verify-actor-update"));
     }
 
@@ -106,7 +106,7 @@ class SQLiteUpdateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].first_name", equalTo("Alice")))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("Alice")))
                 .andDo(document("sqlite-verify-employee-update"));
     }
 
@@ -133,8 +133,8 @@ class SQLiteUpdateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", equalTo("PARTIAL UPDATE TEST")))
-                .andExpect(jsonPath("$[0].language_id", equalTo(1))) // Should remain unchanged
+                .andExpect(jsonPath("$.data[0].title", equalTo("PARTIAL UPDATE TEST")))
+                .andExpect(jsonPath("$.data[0].language_id", equalTo(1))) // Should remain unchanged
                 .andDo(document("sqlite-verify-partial-update"));
     }
 
@@ -162,7 +162,7 @@ class SQLiteUpdateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].rating", equalTo("PG-13")))
+                .andExpect(jsonPath("$.data[0].rating", equalTo("PG-13")))
                 .andDo(document("sqlite-verify-bulk-update"));
     }
 

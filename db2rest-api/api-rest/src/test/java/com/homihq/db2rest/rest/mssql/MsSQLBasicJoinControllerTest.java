@@ -39,19 +39,19 @@ class MsSQLBasicJoinControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
 
-                .andExpect(jsonPath("$[0].*", hasSize(10)))
-                .andExpect(jsonPath("$[0].auid", equalTo(1)))
-                .andExpect(jsonPath("$[0].apid", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(10)))
+                .andExpect(jsonPath("$.data[0].auid", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].apid", equalTo(1)))
 
-                .andExpect(jsonPath("$[1].auid", equalTo(2)))
-                .andExpect(jsonPath("$[1].apid", nullValue()))
+                .andExpect(jsonPath("$.data[1].auid", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].apid", nullValue()))
 
-                .andExpect(jsonPath("$[3].auid", equalTo(6)))
-                .andExpect(jsonPath("$[3].apid", nullValue()))
-                .andExpect(jsonPath("$[3].firstname", nullValue()))
+                .andExpect(jsonPath("$.data[3].auid", equalTo(6)))
+                .andExpect(jsonPath("$.data[3].apid", nullValue()))
+                .andExpect(jsonPath("$.data[3].firstname", nullValue()))
 
                 .andDo(document(DB_NAME + "-left-join"));
     }
@@ -65,23 +65,23 @@ class MsSQLBasicJoinControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].*", hasSize(10)))
-                .andExpect(jsonPath("$[0].auid", equalTo(1)))
-                .andExpect(jsonPath("$[0].apid", equalTo(1)))
-                .andExpect(jsonPath("$[0].username", equalTo("admin")))
-                .andExpect(jsonPath("$[0].firstname", equalTo("Jack")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(10)))
+                .andExpect(jsonPath("$.data[0].auid", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].apid", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].username", equalTo("admin")))
+                .andExpect(jsonPath("$.data[0].firstname", equalTo("Jack")))
 
-                .andExpect(jsonPath("$[1].apid", equalTo(2)))
-                .andExpect(jsonPath("$[1].auid", equalTo(3)))
-                .andExpect(jsonPath("$[1].username", nullValue()))
-                .andExpect(jsonPath("$[1].firstname", equalTo("Tom")))
+                .andExpect(jsonPath("$.data[1].apid", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].auid", equalTo(3)))
+                .andExpect(jsonPath("$.data[1].username", nullValue()))
+                .andExpect(jsonPath("$.data[1].firstname", equalTo("Tom")))
 
-                .andExpect(jsonPath("$[2].auid", equalTo(5)))
-                .andExpect(jsonPath("$[2].apid", equalTo(4)))
-                .andExpect(jsonPath("$[2].username", nullValue()))
-                .andExpect(jsonPath("$[2].firstname", equalTo("Bill")))
+                .andExpect(jsonPath("$.data[2].auid", equalTo(5)))
+                .andExpect(jsonPath("$.data[2].apid", equalTo(4)))
+                .andExpect(jsonPath("$.data[2].username", nullValue()))
+                .andExpect(jsonPath("$.data[2].firstname", equalTo("Bill")))
 
                 .andDo(document(DB_NAME + "-right-join"));
     }

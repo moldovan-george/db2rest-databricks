@@ -107,8 +107,8 @@ class SQLiteJsonFileCreateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
 //                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].title", equalTo("CSV TEST FILM")))
+//                .andExpect(jsonPath("$.data", hasSize(1)))
+//                .andExpect(jsonPath("$.data[0].title", equalTo("CSV TEST FILM")))
                 .andDo(document("sqlite-verify-csv-film"));
     }
 

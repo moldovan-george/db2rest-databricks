@@ -30,10 +30,10 @@ class OracleReadControllerTest extends OracleBaseIntegrationTest {
                         .contentType(APPLICATION_JSON).accept(APPLICATION_JSON))
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                //.andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
-                .andExpect(jsonPath("$[0].*", hasSize(14)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                //.andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(14)))
                 .andDo(document("oracle-get-all-films-all-columns"));
     }
 
@@ -46,9 +46,9 @@ class OracleReadControllerTest extends OracleBaseIntegrationTest {
                 )
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
-                .andExpect(jsonPath("$[0].*", hasSize(3)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(3)))
                 .andDo(document("oracle-find-all-films-3-columns"));
     }
 
@@ -61,11 +61,11 @@ class OracleReadControllerTest extends OracleBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
-                .andExpect(jsonPath("$[0].TITLE", notNullValue()))
-                .andExpect(jsonPath("$[0].DESCRIPTION", notNullValue()))
-                .andExpect(jsonPath("$[0].releaseYear", notNullValue()))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].TITLE", notNullValue()))
+                .andExpect(jsonPath("$.data[0].DESCRIPTION", notNullValue()))
+                .andExpect(jsonPath("$.data[0].releaseYear", notNullValue()))
                 .andDo(document("oracle-find-all-films-with-column-alias"));
     }
 

@@ -139,9 +139,9 @@ class SQLiteCrossJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1))) // Only blue shirt with blue jeans
-                .andExpect(jsonPath("$[0].top_color", equalTo("blue")))
-                .andExpect(jsonPath("$[0].bottom_color", equalTo("blue")))
+                .andExpect(jsonPath("$.data", hasSize(1))) // Only blue shirt with blue jeans
+                .andExpect(jsonPath("$.data[0].top_color", equalTo("blue")))
+                .andExpect(jsonPath("$.data[0].bottom_color", equalTo("blue")))
                 .andDo(document("sqlite-cross-join-color-matching"));
     }
 
@@ -166,8 +166,8 @@ class SQLiteCrossJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3))) // 1 small top x 3 bottoms
-                .andExpect(jsonPath("$[0].top_size", equalTo("S")))
+                .andExpect(jsonPath("$.data", hasSize(3))) // 1 small top x 3 bottoms
+                .andExpect(jsonPath("$.data[0].top_size", equalTo("S")))
                 .andDo(document("sqlite-cross-join-size-filter"));
     }
 

@@ -46,12 +46,12 @@ class PgInnerJoinControllerTest extends PostgreSQLBaseIntegrationTest {
                 )
                 // .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(3))))
-                .andExpect(jsonPath("$[0].*", hasSize(7)))
-                //.andExpect(jsonPath("$[0].review_id", equalTo("ABC123")))
-                //.andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                //.andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(3))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(7)))
+                //.andExpect(jsonPath("$.data[0].review_id", equalTo("ABC123")))
+                //.andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                //.andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
 
                 .andDo(document("pg-inner-join"));
     }

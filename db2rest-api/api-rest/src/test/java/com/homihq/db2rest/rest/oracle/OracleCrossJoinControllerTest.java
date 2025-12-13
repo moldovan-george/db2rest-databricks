@@ -54,16 +54,16 @@ class OracleCrossJoinControllerTest extends OracleBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(16)))
-                .andExpect(jsonPath("$[0].*", hasSize(10)))
-                .andExpect(jsonPath("$[0].AUID", equalTo(1)))
-                .andExpect(jsonPath("$[0].APID", equalTo(1)))
-                .andExpect(jsonPath("$[0].FIRSTNAME", equalTo("Jack")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(16)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(10)))
+                .andExpect(jsonPath("$.data[0].AUID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].APID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].FIRSTNAME", equalTo("Jack")))
 
-                .andExpect(jsonPath("$[1].AUID", equalTo(2)))
-                .andExpect(jsonPath("$[1].APID", equalTo(1)))
-                .andExpect(jsonPath("$[1].FIRSTNAME", equalTo("Jack")))
+                .andExpect(jsonPath("$.data[1].AUID", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].APID", equalTo(1)))
+                .andExpect(jsonPath("$.data[1].FIRSTNAME", equalTo("Jack")))
 
                 .andDo(document("oracle-cross-join-users"));
     }
@@ -77,14 +77,14 @@ class OracleCrossJoinControllerTest extends OracleBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(9)))
-                .andExpect(jsonPath("$[0].*", hasSize(6)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(9)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(6)))
 
-                .andExpect(jsonPath("$[0].TOP_ITEM", equalTo("sweater")))
-                .andExpect(jsonPath("$[0].BOTTOM_ITEM", equalTo("jeans")))
-                .andExpect(jsonPath("$[0].COLOR", equalTo("red")))
-                .andExpect(jsonPath("$[0].botColor", equalTo("blue")))
+                .andExpect(jsonPath("$.data[0].TOP_ITEM", equalTo("sweater")))
+                .andExpect(jsonPath("$.data[0].BOTTOM_ITEM", equalTo("jeans")))
+                .andExpect(jsonPath("$.data[0].COLOR", equalTo("red")))
+                .andExpect(jsonPath("$.data[0].botColor", equalTo("blue")))
 
                 .andDo(document("oracle-cross-join-tops"));
     }

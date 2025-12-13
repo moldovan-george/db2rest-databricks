@@ -166,8 +166,8 @@ class OracleCreateControllerTest extends OracleBaseIntegrationTest {
                         .queryParam("filter", String.format("film_id==%s", pk)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].TITLE", equalTo("Dunki")))
-                .andExpect(jsonPath("$[0].RELEASE_YEAR").doesNotExist());
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("Dunki")))
+                .andExpect(jsonPath("$.data[0].RELEASE_YEAR").doesNotExist());
 
         // cleanup data
         assertTrue(deleteRow("film", "film_id", (int) pk));
@@ -197,8 +197,8 @@ class OracleCreateControllerTest extends OracleBaseIntegrationTest {
                         .queryParam("fields", "title,release_year")
                         .queryParam("filter", String.format("film_id==%s", pk)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].TITLE", equalTo("Dunki")))
-                .andExpect(jsonPath("$[0].RELEASE_YEAR", equalTo("2023")))
+                .andExpect(jsonPath("$.data[0].TITLE", equalTo("Dunki")))
+                .andExpect(jsonPath("$.data[0].RELEASE_YEAR", equalTo("2023")))
                 .andDo(print())
         ;
 
