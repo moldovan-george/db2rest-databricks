@@ -110,7 +110,7 @@ class PGDateTimeAllTest extends PostgreSQLBaseIntegrationTest {
                         .param("filter", "first_name == Collective"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andDo(result -> assertEquals(dateTime, DateTimeUtil.utcToLocalTimestampString(result)))
                 .andDo(document("pg-get-an-actor-with-datetime"));
     }
@@ -124,7 +124,7 @@ class PGDateTimeAllTest extends PostgreSQLBaseIntegrationTest {
                         .param("filter", "last_update == \"2024-03-15T10:30:45.00Z\""))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andExpect(jsonPath("[0].last_name", equalTo("Unconscious")))
                 .andDo(result -> assertEquals(dateTime, DateTimeUtil.utcToLocalTimestampString(result)))
                 .andDo(document("pg-get-an-actor-filter-by-timestamp"));
@@ -139,7 +139,7 @@ class PGDateTimeAllTest extends PostgreSQLBaseIntegrationTest {
                         .param("filter", "last_update == \"2024-03-15T10:30:45.00Z\""))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andExpect(jsonPath("$.rows", equalTo(1)))
                 .andDo(document("pg-delete-an-actor-by-timestamp"));
     }

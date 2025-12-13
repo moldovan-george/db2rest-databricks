@@ -112,7 +112,7 @@ class OracleDateTimeAllTest extends OracleBaseIntegrationTest {
                         .param("filter", "first_name == Collective"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andExpect(jsonPath("[0].LAST_NAME", equalTo("Unconscious")))
                 .andDo(result -> assertEquals(dateTime, DateTimeUtil.utcToLocalTimestampStringOracle(result)))
                 .andDo(document("oracle-get-an-actor-with-datetime"));
@@ -128,7 +128,7 @@ class OracleDateTimeAllTest extends OracleBaseIntegrationTest {
                         .param("filter", "last_update <= \"2024-03-15T10:30:45.00Z\""))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$.*").isArray())
+                //.andExpect(jsonPath("$.data.*").isArray())
                 //.andExpect(jsonPath("[0].LAST_NAME", equalTo("Unconscious")))
                 .andDo(result -> assertEquals(dateTime, DateTimeUtil.utcToLocalTimestampStringOracle(result)))
                 .andDo(document("oracle-get-an-actor-filter-by-timestamp"));
@@ -145,7 +145,7 @@ class OracleDateTimeAllTest extends OracleBaseIntegrationTest {
                         .param("filter", "last_update <= \"2024-03-15T10:30:45.00Z\""))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
+                .andExpect(jsonPath("$.data.*").isArray())
                 .andExpect(jsonPath("$.rows", equalTo(1)))
                 .andDo(document("oracle-delete-an-actor-by-timestamp"));
     }

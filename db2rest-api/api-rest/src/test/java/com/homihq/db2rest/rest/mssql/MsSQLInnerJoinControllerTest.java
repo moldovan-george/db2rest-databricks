@@ -36,9 +36,9 @@ class MsSQLInnerJoinControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(3))))
-                .andExpect(jsonPath("$[0].*", hasSize(7)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(3))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(7)))
 
                 .andDo(document(DB_NAME + "-inner-join"));
     }

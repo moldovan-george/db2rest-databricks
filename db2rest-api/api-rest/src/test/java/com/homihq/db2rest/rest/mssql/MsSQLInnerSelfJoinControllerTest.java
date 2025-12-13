@@ -35,11 +35,11 @@ class MsSQLInnerSelfJoinControllerTest extends MsSQLBaseIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].*", hasSize(15)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].language_id", equalTo(1)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(15)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].language_id", equalTo(1)))
                 .andDo(document(DB_NAME + "-inner-self-join-table"));
     }
 

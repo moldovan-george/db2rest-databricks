@@ -148,8 +148,8 @@ class MsSQLCreateControllerTest extends MsSQLBaseIntegrationTest {
                         .queryParam("filter", String.format("film_id==%s", pk)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", equalTo("Dunki")))
-                .andExpect(jsonPath("$[0].release_year").doesNotExist());
+                .andExpect(jsonPath("$.data[0].title", equalTo("Dunki")))
+                .andExpect(jsonPath("$.data[0].release_year").doesNotExist());
 
         // cleanup data
         assertTrue(deleteRow(pk));
@@ -178,8 +178,8 @@ class MsSQLCreateControllerTest extends MsSQLBaseIntegrationTest {
                         .queryParam("filter", String.format("film_id==%s", pk)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", equalTo("Dunki")))
-                .andExpect(jsonPath("$[0].release_year", equalTo("2023")));
+                .andExpect(jsonPath("$.data[0].title", equalTo("Dunki")))
+                .andExpect(jsonPath("$.data[0].release_year", equalTo("2023")));
 
         // cleanup data
         assertTrue(deleteRow(pk));

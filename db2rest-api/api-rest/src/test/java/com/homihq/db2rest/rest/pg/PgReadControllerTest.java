@@ -52,9 +52,9 @@ class PgReadControllerTest extends PostgreSQLBaseIntegrationTest {
                         .accept(APPLICATION_JSON).accept(APPLICATION_JSON))
                 // .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(8))))
-                .andExpect(jsonPath("$[0].*", hasSize(15)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(15)))
                 .andDo(document("pg-get-all-films-all-columns"));
     }
 
@@ -68,9 +68,9 @@ class PgReadControllerTest extends PostgreSQLBaseIntegrationTest {
                 )
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(8), hasSize(9))))
-                .andExpect(jsonPath("$[0].*", hasSize(3)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(8), hasSize(9))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(3)))
                 .andDo(document("pg-find-all-films-3-columns"));
     }
 
@@ -83,11 +83,11 @@ class PgReadControllerTest extends PostgreSQLBaseIntegrationTest {
                 )
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(8))))
-                .andExpect(jsonPath("$[0].title", notNullValue()))
-                .andExpect(jsonPath("$[0].description", notNullValue()))
-                .andExpect(jsonPath("$[0].releaseYear", notNullValue()))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].title", notNullValue()))
+                .andExpect(jsonPath("$.data[0].description", notNullValue()))
+                .andExpect(jsonPath("$.data[0].releaseYear", notNullValue()))
                 .andDo(document("pg-find-all-films-with-column-alias"));
     }
 

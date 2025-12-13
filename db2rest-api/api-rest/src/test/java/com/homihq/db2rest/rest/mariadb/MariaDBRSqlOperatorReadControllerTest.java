@@ -37,11 +37,11 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].title", notNullValue()))
-                .andExpect(jsonPath("$[0].description", notNullValue()))
-                .andExpect(jsonPath("$[0].release_year", notNullValue()))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].title", notNullValue()))
+                .andExpect(jsonPath("$.data[0].description", notNullValue()))
+                .andExpect(jsonPath("$.data[0].release_year", notNullValue()))
                 .andDo(document("mariadb-find-films-with-equals-operator"));
 
     }
@@ -55,11 +55,11 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id!=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(3), hasSize(3))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
-                .andExpect(jsonPath("$[1].film_id").value(3))
-                .andExpect(jsonPath("$[2].film_id").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(3), hasSize(3))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
+                .andExpect(jsonPath("$.data[1].film_id").value(3))
+                .andExpect(jsonPath("$.data[2].film_id").value(4))
                 .andDo(document("mariadb-find-films-with-not-equals-operator"));
 
     }
@@ -73,10 +73,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id=gt=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].film_id").value(3))
-                .andExpect(jsonPath("$[1].film_id").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].film_id").value(3))
+                .andExpect(jsonPath("$.data[1].film_id").value(4))
                 .andDo(document("mariadb-find-films-with-greater-operator"));
 
     }
@@ -90,11 +90,11 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id=ge=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(3), hasSize(3))))
-                .andExpect(jsonPath("$[0].film_id").value(2))
-                .andExpect(jsonPath("$[1].film_id").value(3))
-                .andExpect(jsonPath("$[2].film_id").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(3), hasSize(3))))
+                .andExpect(jsonPath("$.data[0].film_id").value(2))
+                .andExpect(jsonPath("$.data[1].film_id").value(3))
+                .andExpect(jsonPath("$.data[2].film_id").value(4))
                 .andDo(document("mariadb-find-films-with-greater-equals-operator"));
 
     }
@@ -108,9 +108,9 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id=lt=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
                 .andDo(document("mariadb-find-films-with-less-operator"));
     }
 
@@ -123,10 +123,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id=le=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
-                .andExpect(jsonPath("$[1].film_id").value(2))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
+                .andExpect(jsonPath("$.data[1].film_id").value(2))
                 .andDo(document("mariadb-find-films-with-less-equals-operator"));
     }
 
@@ -139,10 +139,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id=in=(2,3,5)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].film_id").value(2))
-                .andExpect(jsonPath("$[1].film_id").value(3))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].film_id").value(2))
+                .andExpect(jsonPath("$.data[1].film_id").value(3))
                 .andDo(document("mariadb-find-films-with-in-operator"));
     }
 
@@ -155,10 +155,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id=out=(2,3,5)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(2), hasSize(2))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
-                .andExpect(jsonPath("$[1].film_id").value(4))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(2), hasSize(2))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
+                .andExpect(jsonPath("$.data[1].film_id").value(4))
                 .andDo(document("mariadb-find-films-with-not-in-operator"));
     }
 
@@ -171,9 +171,9 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "title=like=ACADEMY")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
                 .andDo(document("mariadb-find-films-with-like-operator"));
     }
 
@@ -186,9 +186,9 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "title=startWith=ACAD")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
                 .andDo(document("mariadb-find-films-starts-with-operator"));
     }
 
@@ -202,9 +202,9 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                 )
                 .andExpect(status().isOk())
               
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(1), hasSize(1))))
-                .andExpect(jsonPath("$[0].film_id").value(1))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(1), hasSize(1))))
+                .andExpect(jsonPath("$.data[0].film_id").value(1))
                 .andDo(document("mariadb-find-films-ends-with-operator"));
     }
 
@@ -232,13 +232,13 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "title=nk=ACADEMY")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACE GOLDFINGER")))
-                .andExpect(jsonPath("$[1].film_id", equalTo(3)))
-                .andExpect(jsonPath("$[1].title", equalTo("ADAPTATION HOLES")))
-                .andExpect(jsonPath("$[2].film_id", equalTo(4)))
-                .andExpect(jsonPath("$[2].title", equalTo("AFFAIR PREJUDICE")))
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(3)))
+                .andExpect(jsonPath("$.data[1].title", equalTo("ADAPTATION HOLES")))
+                .andExpect(jsonPath("$.data[2].film_id", equalTo(4)))
+                .andExpect(jsonPath("$.data[2].title", equalTo("AFFAIR PREJUDICE")))
                 .andDo(document("mariadb-find-films-with-not-like-operator"));
     }
 
@@ -253,11 +253,11 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "title=like=ACADEMY")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(2)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[1].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[1].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*", hasSize(2)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].title", equalTo("ACE GOLDFINGER")))
                 .andDo(document("mariadb-find-films-with-equals-or-like-operator"));
     }
 
@@ -270,10 +270,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACE GOLDFINGER")))
                 .andDo(document("mariadb-find-films-with-equals-and-like-operator"));
     }
 
@@ -286,10 +286,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE;rating=in=(G, mariadb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACE GOLDFINGER")))
                 .andDo(document("mariadb-find-films-with-equals-and-like-and-in-operator"));
     }
 
@@ -304,14 +304,14 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "rating=in=(G, mariadb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[1].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[1].title", equalTo("ACE GOLDFINGER")))
-                .andExpect(jsonPath("$[2].film_id", equalTo(4)))
-                .andExpect(jsonPath("$[2].title", equalTo("AFFAIR PREJUDICE")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data[2].film_id", equalTo(4)))
+                .andExpect(jsonPath("$.data[2].title", equalTo("AFFAIR PREJUDICE")))
                 .andDo(document("mariadb-find-films-with-equals-or-like-or-in-operator"));
     }
 
@@ -324,7 +324,7 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE;rating=out=(G, mariadb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isEmpty())
+                .andExpect(jsonPath("$.data.*").isEmpty())
                 .andDo(document("mariadb-find-films-with-equals-and-like-and-out-operator"));
     }
 
@@ -339,14 +339,14 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "rating=out=(G, mariadb)")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(3)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
-                .andExpect(jsonPath("$[1].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[1].title", equalTo("ACE GOLDFINGER")))
-                .andExpect(jsonPath("$[2].film_id", equalTo(3)))
-                .andExpect(jsonPath("$[2].title", equalTo("ADAPTATION HOLES")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(3)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
+                .andExpect(jsonPath("$.data[1].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[1].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data[2].film_id", equalTo(3)))
+                .andExpect(jsonPath("$.data[2].title", equalTo("ADAPTATION HOLES")))
                 .andDo(document("mariadb-find-films-with-equals-or-like-or-out-operator"));
 
     }
@@ -360,10 +360,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE;rating=in=(G, mariadb);language_id=ge=1")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACE GOLDFINGER")))
                 .andDo(document("mariadb-find-films-with-equals-and-like-and-in-and-greater-equal-operator"));
     }
 
@@ -376,7 +376,7 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE;rating=in=(G, mariadb);language_id=gt=1")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(0)))
+                .andExpect(jsonPath("$.data.*", hasSize(0)))
                 .andDo(document("mariadb-find-films-with-equals-and-like-and-in-and-greater-operator"));
     }
 
@@ -389,10 +389,10 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE;rating=in=(G, mariadb);language_id=le=2")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].film_id", equalTo(2)))
-                .andExpect(jsonPath("$[0].title", equalTo("ACE GOLDFINGER")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].film_id", equalTo(2)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("ACE GOLDFINGER")))
                 .andDo(document("mariadb-find-films-with-equals-and-like-and-in-and-less-equal-operator"));
     }
 
@@ -405,8 +405,8 @@ class MariaDBRSqlOperatorReadControllerTest extends MariaDBBaseIntegrationTest {
                         .param("filter", "film_id==2;title=like=ACE;rating=in=(G, mariadb);language_id=lt=1")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isEmpty())
-                .andExpect(jsonPath("$.*", hasSize(0)))
+                .andExpect(jsonPath("$.data.*").isEmpty())
+                .andExpect(jsonPath("$.data.*", hasSize(0)))
                 .andDo(document("mariadb-find-films-with-equals-and-like-and-in-and-less-operator"));
     }
 

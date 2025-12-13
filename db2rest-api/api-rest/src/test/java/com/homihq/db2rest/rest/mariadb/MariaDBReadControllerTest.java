@@ -29,10 +29,10 @@ class MariaDBReadControllerTest extends MariaDBBaseIntegrationTest {
                         .contentType(APPLICATION_JSON).accept(APPLICATION_JSON))
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                //.andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
-                .andExpect(jsonPath("$[0].*", hasSize(14)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                //.andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(14)))
                 .andDo(document("mariadb-get-all-films-all-columns"));
     }
 
@@ -45,9 +45,9 @@ class MariaDBReadControllerTest extends MariaDBBaseIntegrationTest {
                 )
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
-                .andExpect(jsonPath("$[0].*", hasSize(3)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].*", hasSize(3)))
                 .andDo(document("mariadb-find-all-films-3-columns"));
     }
 
@@ -60,11 +60,11 @@ class MariaDBReadControllerTest extends MariaDBBaseIntegrationTest {
                 )
                 //.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
-                .andExpect(jsonPath("$[0].title", notNullValue()))
-                .andExpect(jsonPath("$[0].description", notNullValue()))
-                .andExpect(jsonPath("$[0].releaseYear", notNullValue()))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", anyOf(hasSize(4), hasSize(9), hasSize(8))))
+                .andExpect(jsonPath("$.data[0].title", notNullValue()))
+                .andExpect(jsonPath("$.data[0].description", notNullValue()))
+                .andExpect(jsonPath("$.data[0].releaseYear", notNullValue()))
                 .andDo(document("mariadb-find-all-films-with-column-alias"));
     }
 

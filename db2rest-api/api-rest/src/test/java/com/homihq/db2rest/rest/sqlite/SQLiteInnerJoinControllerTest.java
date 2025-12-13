@@ -60,9 +60,9 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(6)))
-                .andExpect(jsonPath("$[0].title").exists())
-                .andExpect(jsonPath("$[0].first_name").exists())
+                //.andExpect(jsonPath("$.data", hasSize(6)))
+                .andExpect(jsonPath("$.data[0].title").exists())
+                .andExpect(jsonPath("$.data[0].first_name").exists())
                 .andDo(document("sqlite-inner-join-film-actor"));
     }
 
@@ -94,9 +94,9 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].title").exists())
-                .andExpect(jsonPath("$[0].name").exists())
+                //.andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].title").exists())
+                .andExpect(jsonPath("$.data[0].name").exists())
                 .andDo(document("sqlite-inner-join-film-category"));
     }
 
@@ -129,8 +129,8 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("PENELOPE")))
+                //.andExpect(jsonPath("$.data", hasSize(2)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("PENELOPE")))
                 .andDo(document("sqlite-inner-join-with-filter"));
     }
 
@@ -163,8 +163,8 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(6)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("PENELOPE")))
+                //.andExpect(jsonPath("$.data", hasSize(6)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("PENELOPE")))
                 .andDo(document("sqlite-inner-join-with-sorting"));
     }
 
@@ -197,7 +197,7 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$.data", hasSize(3)))
                 .andDo(document("sqlite-inner-join-with-pagination"));
     }
 
@@ -223,9 +223,9 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].title").exists())
-                .andExpect(jsonPath("$[0].name").exists())
+                //.andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].title").exists())
+                .andExpect(jsonPath("$.data[0].name").exists())
                 .andDo(document("sqlite-inner-join-with-language"));
     }
 
@@ -258,9 +258,9 @@ class SQLiteInnerJoinControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(5)))
-                .andExpect(jsonPath("$[0].title").exists())
-                .andExpect(jsonPath("$[0].first_name").exists())
+                //.andExpect(jsonPath("$.data", hasSize(5)))
+                .andExpect(jsonPath("$.data[0].title").exists())
+                .andExpect(jsonPath("$.data[0].first_name").exists())
                 .andDo(document("sqlite-inner-join-multiple-tables"));
     }
 

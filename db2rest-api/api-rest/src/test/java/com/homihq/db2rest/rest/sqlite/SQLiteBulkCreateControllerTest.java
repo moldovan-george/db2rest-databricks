@@ -61,7 +61,7 @@ class SQLiteBulkCreateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)))
+                .andExpect(jsonPath("$.data", hasSize(0)))
                 .andDo(document("sqlite-verify-bulk-actors"));
     }
 
@@ -86,7 +86,7 @@ class SQLiteBulkCreateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$", hasSize(2)))
+                //.andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-verify-bulk-directors"));
     }
 
@@ -117,7 +117,7 @@ class SQLiteBulkCreateControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-verify-bulk-subset"));
     }
 

@@ -29,9 +29,9 @@ class MySQLReadTwoTablesSameNameDiffSchemaTest extends MySQLBaseIntegrationTest 
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].*", hasSize(5)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(5)))
                 .andDo(document("mysql-get-all-users-diff-schemas-sakila"));
 
         mockMvc.perform(get(VERSION + "/mysqldb/users")
@@ -41,9 +41,9 @@ class MySQLReadTwoTablesSameNameDiffSchemaTest extends MySQLBaseIntegrationTest 
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(4)))
-                .andExpect(jsonPath("$[0].*", hasSize(5)))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(4)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(5)))
                 .andDo(document("mysql-get-all-users-diff-schemas-wakila"));
     }
 }

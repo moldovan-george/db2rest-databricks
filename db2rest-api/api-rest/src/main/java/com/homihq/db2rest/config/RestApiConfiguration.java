@@ -70,8 +70,10 @@ public class RestApiConfiguration {
 
     @Bean
     @ConditionalOnBean(ReadService.class)
-    public ReadController readController(ReadService readService, Db2RestConfigProperties configProperties) {
-        return new ReadController(readService, configProperties);
+    public ReadController readController(ReadService readService,
+                                         CountQueryService countQueryService,
+                                         Db2RestConfigProperties configProperties) {
+        return new ReadController(readService, countQueryService, configProperties);
     }
 
 

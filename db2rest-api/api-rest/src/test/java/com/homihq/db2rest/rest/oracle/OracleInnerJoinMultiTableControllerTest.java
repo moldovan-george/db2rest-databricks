@@ -49,14 +49,14 @@ class OracleInnerJoinMultiTableControllerTest extends OracleBaseIntegrationTest 
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*").isArray())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$[0].*", hasSize(17)))
-                .andExpect(jsonPath("$[0].FILM_ID", equalTo(1)))
-                .andExpect(jsonPath("$[0].LANGUAGE_ID", equalTo(1)))
-                .andExpect(jsonPath("$[0].ACTOR_ID", equalTo(1)))
-                .andExpect(jsonPath("$[0].FIRST_NAME", equalTo("PENELOPE")))
-                .andExpect(jsonPath("$[0].LAST_NAME", equalTo("GUINESS")))
+                .andExpect(jsonPath("$.data.*").isArray())
+                .andExpect(jsonPath("$.data.*", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].*", hasSize(17)))
+                .andExpect(jsonPath("$.data[0].FILM_ID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].LANGUAGE_ID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].ACTOR_ID", equalTo(1)))
+                .andExpect(jsonPath("$.data[0].FIRST_NAME", equalTo("PENELOPE")))
+                .andExpect(jsonPath("$.data[0].LAST_NAME", equalTo("GUINESS")))
                 .andDo(document("oracle-inner-multi-table-join"));
     }
 

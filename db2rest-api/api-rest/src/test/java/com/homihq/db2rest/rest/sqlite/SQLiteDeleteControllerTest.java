@@ -82,7 +82,7 @@ class SQLiteDeleteControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isEmpty())
+                .andExpect(jsonPath("$.data").isEmpty())
                 .andDo(document("sqlite-verify-filter-deletion"));
     }
 

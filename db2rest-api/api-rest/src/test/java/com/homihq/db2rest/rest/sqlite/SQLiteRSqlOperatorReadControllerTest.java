@@ -31,8 +31,8 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].film_id", equalTo(1)))
+//                .andExpect(jsonPath("$.data", hasSize(1)))
+//                .andExpect(jsonPath("$.data[0].film_id", equalTo(1)))
                 .andDo(document("sqlite-rsql-equal"));
     }
 
@@ -46,7 +46,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(4)))
+//                .andExpect(jsonPath("$.data", hasSize(4)))
                 .andDo(document("sqlite-rsql-not-equal"));
     }
 
@@ -60,7 +60,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(2)))
+//                .andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-rsql-greater-than"));
     }
 
@@ -74,7 +74,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(2)))
+//                .andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-rsql-less-than"));
     }
 
@@ -88,7 +88,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(3)))
+//                .andExpect(jsonPath("$.data", hasSize(3)))
                 .andDo(document("sqlite-rsql-greater-than-equal"));
     }
 
@@ -102,7 +102,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(3)))
+//                .andExpect(jsonPath("$.data", hasSize(3)))
                 .andDo(document("sqlite-rsql-less-than-equal"));
     }
 
@@ -116,7 +116,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(3)))
+//                .andExpect(jsonPath("$.data", hasSize(3)))
                 .andDo(document("sqlite-rsql-in"));
     }
 
@@ -130,7 +130,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(3)))
+//                .andExpect(jsonPath("$.data", hasSize(3)))
                 .andDo(document("sqlite-rsql-not-in"));
     }
 
@@ -144,8 +144,8 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].title", equalTo("ACADEMY DINOSAUR")))
+//                .andExpect(jsonPath("$.data", hasSize(1)))
+//                .andExpect(jsonPath("$.data[0].title", equalTo("ACADEMY DINOSAUR")))
                 .andDo(document("sqlite-rsql-like"));
     }
 
@@ -159,7 +159,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(3)))
+//                .andExpect(jsonPath("$.data", hasSize(3)))
                 .andDo(document("sqlite-rsql-and"));
     }
 
@@ -173,7 +173,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(2)))
+//                .andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-rsql-or"));
     }
 
@@ -187,7 +187,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
+//                .andExpect(jsonPath("$.data", hasSize(1)))
                 .andDo(document("sqlite-rsql-complex-parentheses"));
     }
 
@@ -201,7 +201,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(2)))
+//                .andExpect(jsonPath("$.data", hasSize(2)))
                 .andDo(document("sqlite-rsql-boolean"));
     }
 
@@ -215,8 +215,8 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].first_name", equalTo("BETTE")))
+                .andExpect(jsonPath("$.data", hasSize(1)))
+                .andExpect(jsonPath("$.data[0].first_name", equalTo("BETTE")))
                 .andDo(document("sqlite-rsql-string-wildcards"));
     }
 
@@ -230,7 +230,7 @@ class SQLiteRSqlOperatorReadControllerTest extends SQLiteBaseIntegrationTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(5)))
+//                .andExpect(jsonPath("$.data", hasSize(5)))
                 .andDo(document("sqlite-rsql-null-value"));
     }
 

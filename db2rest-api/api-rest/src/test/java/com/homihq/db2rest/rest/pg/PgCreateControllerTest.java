@@ -155,8 +155,8 @@ class PgCreateControllerTest extends PostgreSQLBaseIntegrationTest {
                         .queryParam("filter", String.format("film_id==%s", pk)))
                 // .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", equalTo("Dunki")))
-                .andExpect(jsonPath("$[0].release_year").doesNotExist());
+                .andExpect(jsonPath("$.data[0].title", equalTo("Dunki")))
+                .andExpect(jsonPath("$.data[0].release_year").doesNotExist());
 
         // cleanup data
         assertTrue(deleteRow("film", "film_id", (int) pk));
@@ -183,8 +183,8 @@ class PgCreateControllerTest extends PostgreSQLBaseIntegrationTest {
                         .queryParam("select", "title,release_year")
                         .queryParam("filter", String.format("film_id==%s", pk)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", equalTo("Dunki")))
-                .andExpect(jsonPath("$[0].release_year", equalTo(2023)))
+                .andExpect(jsonPath("$.data[0].title", equalTo("Dunki")))
+                .andExpect(jsonPath("$.data[0].release_year", equalTo(2023)))
         // .andDo(print())
         ;
 
