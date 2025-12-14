@@ -29,7 +29,7 @@ public class MsSQLReadControllerDefaultFetchLimitTest extends MsSQLBaseIntegrati
                 .andExpect(jsonPath("$.data", anyOf(hasSize(5))))
                 .andExpect(jsonPath("$.pagination.currentPage").value(1))
                 .andExpect(jsonPath("$.pagination.pageSize").value(5))
-                .andExpect(jsonPath("$.pagination.remainingDocuments").value(greaterThanOrEqualTo(0)))
+                .andExpect(jsonPath("$.pagination.remainingPages").value(greaterThanOrEqualTo(0)))
                 .andDo(document(DB_NAME + "-find-all-persons-with-default-fetch-limit-5"));
     }
 }

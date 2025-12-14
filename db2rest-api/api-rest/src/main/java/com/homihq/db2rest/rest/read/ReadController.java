@@ -107,11 +107,15 @@ public class ReadController {
 
         int currentPage = effectivePageSize > 0 ? (int) (safeOffset / effectivePageSize) + 1 : 1;
         long remainingDocuments = Math.max(totalDocuments - (safeOffset + currentResultSize), 0);
+        boolean matchesRequestedSize = effectivePageSize > 0 && currentResultSize == effectivePageSize;
+        long remainingPages = matchesRequestedSize
+                ? (remainingDocuments + effectivePageSize - 1L) / effectivePageSize
+                : 0;
 
         return new PaginationMetadata(
                 currentPage,
                 currentResultSize,
-                remainingDocuments,
+                remainingPages,
                 totalDocuments
         );
     }

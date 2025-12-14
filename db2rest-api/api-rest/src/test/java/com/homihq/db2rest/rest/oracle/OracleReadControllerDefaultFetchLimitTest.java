@@ -32,7 +32,7 @@ class OracleReadControllerDefaultFetchLimitTest extends OracleBaseIntegrationTes
                 .andExpect(jsonPath("$.data", anyOf(hasSize(5))))
                 .andExpect(jsonPath("$.pagination.currentPage").value(1))
                 .andExpect(jsonPath("$.pagination.pageSize").value(5))
-                .andExpect(jsonPath("$.pagination.remainingDocuments").value(greaterThanOrEqualTo(0)))
+                .andExpect(jsonPath("$.pagination.remainingPages").value(greaterThanOrEqualTo(0)))
                 .andDo(document("oracle-find-all-persons-with-default-fetch-limit-5"));
     }
 }
